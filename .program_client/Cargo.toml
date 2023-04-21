@@ -1,0 +1,11 @@
+[package]
+name = "program_client"
+version = "0.1.0"
+edition = "2018"
+[dependencies.trdelnik-client]
+path = "../../trdelnik/crates/client"
+version = "0.6.0"
+
+[dependencies.anchor-counter]
+path = "../programs/anchor-counter"
+features = ["no-entrypoint"]
