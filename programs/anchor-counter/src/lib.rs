@@ -12,6 +12,13 @@ pub mod anchor_counter {
         msg!("Current count is {}", counter.count);
         Ok(())
     }
+
+    pub fn decrement(ctx: Context<Update>) -> Result<()> {
+        let counter = &mut ctx.accounts.counter;
+        counter.count -= 1;
+        msg!("Current count is {}", counter.count);
+        Ok(())
+    }
 }
 
 #[account]

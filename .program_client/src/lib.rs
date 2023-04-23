@@ -26,4 +26,24 @@ pub mod anchor_counter_instruction {
             accounts: accounts.to_account_metas(None),
         }
     }
+    pub async fn decrement(
+        client: &Client,
+        parameters: anchor_counter::instruction::Decrement,
+        accounts: anchor_counter::accounts::Update,
+        signers: impl IntoIterator<Item = Keypair> + Send + 'static,
+    ) -> Result<EncodedConfirmedTransactionWithStatusMeta, ClientError> {
+        Ok(client
+            .send_instruction(PROGRAM_ID, parameters, accounts, signers)
+            .await?)
+    }
+    pub fn decrement_ix(
+        parameters: anchor_counter::instruction::Decrement,
+        accounts: anchor_counter::accounts::Update,
+    ) -> Instruction {
+        Instruction {
+            program_id: PROGRAM_ID,
+            data: parameters.data(),
+            accounts: accounts.to_account_metas(None),
+        }
+    }
 }
