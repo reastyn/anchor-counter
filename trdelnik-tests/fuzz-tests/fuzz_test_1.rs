@@ -67,7 +67,7 @@ async fn invariant_check_counter(State(state): State<TestState>, client: Client)
     assert_eq!(counter_account.count as i128, state.count);
 }
 
-#[tokio::main(flavor = "multi_thread")]
+#[trdelnik_fuzz]
 async fn main() {
     FuzzTestBuilder::new()
         .initialize_validator(initialize_validator)
